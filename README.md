@@ -13,7 +13,7 @@
 This project is intended to demonstrate how to create a Laravel application that can track income and expenses.
 
 ## Screenshots
-![](/localhost_8000_dashboard.png?raw=true){:class="img-responsive"}
+![](/localhost_8000_dashboard.png?raw=true | width=200)
 
 ## Built With
 
