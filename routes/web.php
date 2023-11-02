@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/category', CategoryController::class);
     Route::resource('/transfer', TransferController::class);
     Route::resource('/user', UserController::class);
+
     Route::get('/report/statement', ReportStatementController::class);
     Route::get('/report/summary', ReportSummaryController::class);
 });

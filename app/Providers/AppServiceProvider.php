@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('invalid', function (string $value) {
             return request('invalid') == $value;
         });
+
         Blade::if('modal_is', function (string $value) {
             return request('_modal') == $value;
         });

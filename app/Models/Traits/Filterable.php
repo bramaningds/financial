@@ -12,11 +12,6 @@ trait Filterable
         return array_filter_key($attributes, (new static)->filterable);
     }
 
-    public static function filterable(array $attributes = [])
-    {
-        return (new static)->filterable;
-    }
-
     public function scopeFilter(Builder $query, $parameters = [])
     {
         if (!$this->filterable) {

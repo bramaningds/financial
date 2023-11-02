@@ -42,8 +42,9 @@
 
     <article class="card p-4">
         <h4 class="text-center">Laporan Keuangan</h4>
-        <p class="subtitle text-center">Periode: {{ $statements->first()->period_string }} &minus;
-            {{ $statements->last()->period_string }}</p>
+        <p class="subtitle text-center">
+            Periode: {{ $statements->first()->period_string }} &minus;{{ $statements->last()->period_string }}
+        </p>
 
         <div class="table-responsive py-4">
             <table class="table table-sm table-borderless w-auto m-auto">
@@ -82,7 +83,7 @@
                         <td style="min-width: 160px;"></td>
 
                         @foreach ($statements->groupBy('year')->map(fn($item) => $item->unique('month')->pluck('month_name'))->flatten() as $month_name)
-                            <th class="text-center text-truncate" style="min-width: 100px;">{{ $month_name }}</th>
+                            <th class="text-end text-truncate" style="min-width: 100px;">{{ $month_name }}</th>
                         @endforeach
                     </tr>
                 </thead>
@@ -91,6 +92,7 @@
                     <tbody>
                         <tr>
                             <th>{{ $activity_type == 'income' ? 'Penerimaan' : 'Pengeluaran' }}</th>
+                            <td colspan="{{ $statements->groupBy('period')->count() }}"></td>
                         </tr>
 
                         @foreach ($activity_type_items->groupBy('category_name') as $category_name => $category_items)
@@ -104,7 +106,9 @@
                         @endforeach
 
                         <tr>
-                            <td class="ps-4">Total</td>
+                            <td class="ps-4">
+                                Total {{ $activity_type == 'income' ? 'Penerimaan' : 'Pengeluaran' }}
+                            </td>
 
                             @foreach ($activity_type_items->groupBy('period')->map(fn($item) => $item->sum('mutation')) as $total)
                                 <th class="border-top text-end">{{ money_format($total, '') }}</th>
